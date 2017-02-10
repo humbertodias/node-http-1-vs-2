@@ -2,7 +2,12 @@
 
 Node app to compare http 1 vs 2 protocol.
 
-# Running
+## Prerequires
+
+1. [Git](https://git-scm.com/downloads) 2.9+
+2. [Node](https://nodejs.org/en/download) 7.5+
+
+## Running
 
 Clone
 
@@ -11,7 +16,7 @@ git clone https://github.com/humbertodias/node-http-1-vs-2.git
 cd node-http-1-vs-2
 ```
 
-Start
+HTTP/1
 
 ```
 node http-1.js
@@ -24,6 +29,8 @@ http://localhost:3001
 ```
 
 ![](doc/out-1.png)
+
+HTTP/2
 
 ```
 node http-2.js
@@ -38,17 +45,19 @@ https://localhost:3002
 ![](doc/out-2.png)
 
 
-# Result
+## Result
+
+http/2 spent 223/48 = **4.66x** less bytes than http/1 response.
+
 
 | Protovcol        | Size           | Time  |
 | ------------- |:-------------:| -----:|
 | http/1    | 223B| 25ms |
 | http/2      | 48B      |   21ms|
 
-http/2 spent 223/48 = **4.66x** less bytes than http/1 response.
 
 
-# References
+## References
 
 1. [Easy HTTP/2 Server with Node.js and Express.js](https://webapplog.com/http2-node/)
 2. [As-fantasticas-novidades-do-http-2-0-e-do-spdy](http://blog.caelum.com.br/as-fantasticas-novidades-do-http-2-0-e-do-spdy/)
