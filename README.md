@@ -4,14 +4,23 @@ Node app to compare http 1 vs 2 protocol.
 
 # Running
 
+Clone
+
+```
+git clone https://github.com/humbertodias/node-http-1-vs-2.git 
+cd node-http-1-vs-2
+```
+
+Start
+
 ```
 node http-1.js
 ```
 
-Console
+Browser
 
 ```
-Listening on port: 3001.
+http://localhost:3001
 ```
 
 ![](doc/out-1.png)
@@ -20,10 +29,10 @@ Listening on port: 3001.
 node http-2.js
 ```
 
-Console
+Browser
 
 ```
-Listening on port: 3002.
+https://localhost:3002
 ```
 
 ![](doc/out-2.png)
