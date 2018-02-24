@@ -71,6 +71,12 @@ http://localhost:3003
 
 ![](doc/compare.gif)
 
+The original image has 512x512 and each tile was cropped as 64x64
+
+```
+convert -crop 64x64 doc/nodejs.png doc/tile-%d.png
+```
+
 
 ## References
 
