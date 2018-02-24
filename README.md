@@ -45,7 +45,18 @@ https://localhost:3002
 ![](doc/out-2.png)
 
 
-Comparation
+## Result
+
+http/2 spent 223/48 = **4.66x** less bytes than http/1 response.
+
+
+| Protovcol        | Size           | Time  |
+| ------------- |:-------------:| -----:|
+| http/1    | 223B| 25ms |
+| http/2      | 48B      |   21ms|
+
+
+Comparison
 
 ```
 node http-compare.js
@@ -57,19 +68,7 @@ Browser
 http://localhost:3003
 ```
 
-![](doc/compare.png)
-
-
-## Result
-
-http/2 spent 223/48 = **4.66x** less bytes than http/1 response.
-
-
-| Protovcol        | Size           | Time  |
-| ------------- |:-------------:| -----:|
-| http/1    | 223B| 25ms |
-| http/2      | 48B      |   21ms|
-
+![](doc/compare.gif)
 
 
 ## References
