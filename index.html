@@ -29,6 +29,8 @@
 
         function reloadImage(elm){
             var oldSrc = elm.getAttribute("src");
+            var idxParam = oldSrc.indexOf("?");
+            if( idxParam != -1) oldSrc = oldSrc.substring(0, idxParam)
             var t = performance.now();
             elm.setAttribute("alt", t);
             elm.setAttribute("src", "");
