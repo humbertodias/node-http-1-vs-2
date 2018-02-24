@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .image-row {
+            font-size: 0;
+        }
+
+        img {
+            width: 64px;
+            height: 64px;
+        }
+
+        table {
+            text-align: center;
+            margin: auto;
+        }
+
+    </style>
+    <script type="text/javascript">
+        var loaded=0, MAX_IMG = 64;
+        function compare() {
+            document.querySelectorAll("#image-http-1 .demo-image").forEach(reloadImage);
+            document.querySelectorAll("#image-http-2 .demo-image").forEach(reloadImage);
+        }
+
+        function reloadImage(elm){
+            var oldSrc = elm.getAttribute("src");
+            var t = performance.now();
+            elm.setAttribute("alt", t);
+            elm.setAttribute("src", "");
+            elm.setAttribute("src", oldSrc + "?t=" + t);
+            elm.onload = function(evt){
+                var el = evt.target;
+                var t0 = parseFloat(el.alt);
+                var t1 = performance.now();
+                var tf = t1-t0;
+                var tfsec = tf / 1000;
+                el.setAttribute("title", tfsec + " sec" );
+
+                if(loaded == MAX_IMG){
+                    loaded=0;
+                    measure()
+                }
+                loaded++;
+            }
+        }
+
+        function getEleapsedTimeToLoad(img){
+            var title = img.getAttribute("title");
+            return title == null ? 0 : parseFloat(title.replace(" sec"),'') ;
+        }
+
+        function measure(){
+            var tfh1 = 0, tfh2 = 0; 
+            document.querySelectorAll("#image-http-1 .demo-image").forEach(function(img){
+                tfh1 += getEleapsedTimeToLoad(img);
+                document.getElementById ("info1").innerHTML = tfh1.toFixed(2) + " sec";
+            });
+            document.querySelectorAll("#image-http-2 .demo-image").forEach(function(img){
+                tfh2 += getEleapsedTimeToLoad(img);
+                document.getElementById ("info3").innerHTML = tfh2.toFixed(2) + " sec";
+            });
+
+            document.getElementById ("info2").innerHTML = (tfh1/tfh2).toFixed(2) + "x";
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <tr>
+
+                <td>
+                    <h1>HTTP 1.1</h1>
+                </td>
+                <td><button onclick="compare()">Compare</button></td>
+                <td>
+                    <h1>HTTP 2</h1>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+
+                    <div id="image-http-1">
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_0.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_1.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_2.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_3.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_4.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_5.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_6.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_7.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_8.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_9.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_10.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_11.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_12.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_13.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_14.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_15.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_16.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_17.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_18.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_19.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_20.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_21.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_22.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_23.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_24.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_25.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_26.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_27.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_28.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_29.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_30.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_31.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_32.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_33.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_34.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_35.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_36.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_37.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_38.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_39.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_40.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_41.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_42.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_43.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_44.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_45.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_46.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_47.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_48.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_49.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_50.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_51.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_52.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_53.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_54.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_55.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="http://localhost:3001/img/img_56.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_57.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_58.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_59.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_60.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_61.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_62.png">
+                            <img class="demo-image" src="http://localhost:3001/img/img_63.png">
+                        </div>
+
+                    </div>
+
+                </td>
+                <td>&nbsp;</td>
+                <td>
+
+                    <div id="image-http-2">
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_0.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_1.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_2.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_3.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_4.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_5.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_6.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_7.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_8.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_9.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_10.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_11.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_12.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_13.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_14.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_15.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_16.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_17.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_18.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_19.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_20.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_21.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_22.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_23.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_24.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_25.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_26.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_27.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_28.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_29.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_30.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_31.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_32.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_33.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_34.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_35.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_36.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_37.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_38.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_39.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_40.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_41.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_42.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_43.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_44.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_45.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_46.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_47.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_48.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_49.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_50.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_51.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_52.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_53.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_54.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_55.png">
+                        </div>
+
+                        <div class="image-row">
+                            <img class="demo-image" src="https://localhost:3002/img/img_56.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_57.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_58.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_59.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_60.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_61.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_62.png">
+                            <img class="demo-image" src="https://localhost:3002/img/img_63.png">
+                        </div>
+
+                    </div>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td><h3 id="info1"></h3></td>
+                <td><h3 id="info2"></h3></td>
+                <td><h3 id="info3"></h3></td>
+            </tr>
+
+    </table>
+
+</body>
+
+</html>
