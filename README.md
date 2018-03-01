@@ -71,10 +71,10 @@ http://localhost:3003
 
 ![](doc/compare.gif)
 
-The original image has 512x512 and each tile was cropped as 64x64
+The original image has 512x512 and each tile was cropped as 16x16
 
 ```
-convert -crop 64x64 doc/nodejs.png doc/tile-%d.png
+convert -crop 16x16 img/nodejs.png img/tile-%d.png
 ```
 
 
