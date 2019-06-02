@@ -1,7 +1,6 @@
 const port = 3002
 const spdy = require('spdy')
 const express = require('express')
-const path = require('path')
 const fs = require('fs')
 
 const app = express()
@@ -14,12 +13,10 @@ app.get('/', (req, res) => {
 
 app.use('/img', express.static('img'))
 
-
 const options = {
     key: fs.readFileSync(__dirname + '/server.key'),
     cert:  fs.readFileSync(__dirname + '/server.crt')
 }
-
 
 spdy
   .createServer(options, app)
@@ -28,6 +25,6 @@ spdy
       console.error(error)
       return process.exit(1)
     } else {
-      console.log('Listening on port: ' + port + '.')
+      console.log('Listening on port: https://0.0.0.0:' + port)
     }
   })

@@ -1,7 +1,5 @@
 const port = 3001
 const express = require('express')
-const path = require('path')
-const fs = require('fs')
 
 const app = express()
 
@@ -18,7 +16,7 @@ app.listen(port, (error) => {
       console.error(error)
       return process.exit(1)
     } else {
-      console.log('Listening on port: ' + port + '.')
+      console.log('Listening on port: http://0.0.0.0:' + port)
     }
   })
 

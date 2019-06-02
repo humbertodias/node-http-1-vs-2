@@ -5,7 +5,7 @@ Node app to compare http 1 vs 2 protocol.
 ## Prerequires
 
 1. [Git](https://git-scm.com/downloads) 2.9+
-2. [Node](https://nodejs.org/en/download) 7.5+
+2. [Node](https://nodejs.org/en/download) v10.16.0
 
 ## Running
 
