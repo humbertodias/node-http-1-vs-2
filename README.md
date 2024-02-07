@@ -11,7 +11,7 @@ Node app to compare http 1 vs 2 protocol.
 
 Clone
 
-```
+```shell
 git clone https://github.com/humbertodias/node-http-1-vs-2.git 
 cd node-http-1-vs-2
 npm install
@@ -19,7 +19,7 @@ npm install
 
 HTTP/1
 
-```
+```shell
 node http-1.js
 ```
 
@@ -33,7 +33,7 @@ http://localhost:3001
 
 HTTP/2
 
-```
+```shell
 node http-2.js
 ```
 
@@ -59,7 +59,7 @@ http/2 spent 223/48 = **4.66x** less bytes than http/1 response.
 
 Comparison
 
-```
+```shell
 node http-compare.js
 ```
 
@@ -73,7 +73,7 @@ http://localhost:3003
 
 The original image has 512x512 and each tile was cropped as 16x16
 
-```
+```shell
 convert -crop 16x16 img/nodejs.png img/tile-%d.png
 ```
 

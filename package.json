@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cert:csr": "openssl req -nodes -new -newkey rsa:2048 -keyout server.key -out server.csr",
+    "cert:crt": "openssl x509 -req -sha256 -days 365 -in server.csr -signkey server.key -out server.crt"
   },
   "author": "",
   "license": "ISC",
