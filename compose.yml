@@ -38,12 +38,15 @@ services:
     working_dir: /app
 
   gateway:
-    build: .
-    command: node --watch http-compare.js
+    image: node
+    command: node --watch http-gateway.js
     ports:
       - "3000:3000"
     networks:
       - node_network
+    volumes:
+      - .:/app
+    working_dir: /app
 
 networks:
   node_network:

@@ -21,8 +21,8 @@ const router = createRouter()
 
 app.use(router);
 const options = {
-  key: fs.readFileSync(`${__dirname}/server.key`),
-  cert: fs.readFileSync(`${__dirname}/server.crt`),
+  key: fs.readFileSync(`${__dirname}/ssl/server.key`),
+  cert: fs.readFileSync(`${__dirname}/ssl/server.crt`),
 };
 
 // TODO - listen(options, port) is causing a runtime exception

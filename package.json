@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cert:csr": "openssl req -nodes -new -newkey rsa:2048 -keyout server.key -out server.csr",
-    "cert:crt": "openssl x509 -req -sha256 -days 365 -in server.csr -signkey server.key -out server.crt",
+    "cert:csr": "openssl req -nodes -new -newkey rsa:2048 -keyout ssl/server.key -out ssl/server.csr",
+    "cert:crt": "openssl x509 -req -sha256 -days 365 -in ssl/server.csr -signkey ssl/server.key -out ssl/server.crt",
     "img:crop": "convert -crop 16x16 img/nodejs.png img/tile-%d.png"
   },
   "type": "module",

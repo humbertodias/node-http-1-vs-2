@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 app.use("/img", express.static("img"));
 
 const options = {
-  key: fs.readFileSync(`${__dirname}/server.key`),
-  cert: fs.readFileSync(`${__dirname}/server.crt`),
+  key: fs.readFileSync(`${__dirname}/ssl/server.key`),
+  cert: fs.readFileSync(`${__dirname}/ssl/server.crt`),
 };
 
 spdy.createServer(options, app).listen(port, (error) => {
