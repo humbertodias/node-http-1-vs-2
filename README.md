@@ -6,6 +6,7 @@ Node app to compare http 1 vs 2 protocol.
 
 1. [Git](https://git-scm.com/downloads) 2.9+
 2. [Node](https://nodejs.org/en/download) v10.16.0
+3. [Docker](https://www.docker.com) 25+
 
 ## Running
 
@@ -14,68 +15,41 @@ Clone
 ```shell
 git clone https://github.com/humbertodias/node-http-1-vs-2.git 
 cd node-http-1-vs-2
-npm install
 ```
 
-HTTP/1
+Run
 
 ```shell
-node http-1.js
+docker compose up -d
 ```
 
-Browser
-
-```
-http://localhost:3001
-```
-
-![](doc/out-1.png)
-
-HTTP/2
-
-```shell
-node http-2.js
+```mermaid
+graph TD;
+    A[http1] -->|:3001| C{gateway};
+    B[http2] -->|:3002| C;
+    C <---> |:3003| D[Browser];
 ```
 
-Browser
+Access the gateway
 
-```
-https://localhost:3002
-```
-
-![](doc/out-2.png)
-
+http://localhost:3003
 
 ## Result
+
+![](doc/compare.gif)
 
 http/2 spent 223/48 = **4.66x** less bytes than http/1 response.
 
 
-| Protovcol        | Size           | Time  |
+| Protocol     | Size          | Time  |
 | ------------- |:-------------:| -----:|
-| http/1    | 223B| 25ms |
-| http/2      | 48B      |   21ms|
+| http/1        | 223B          | 25ms  |
+| http/2        | 48B           | 21ms  |
 
 
-Comparison
 
-```shell
-node http-compare.js
-```
-
-Browser
-
-```
-http://localhost:3003
-```
-
-![](doc/compare.gif)
-
-The original image has 512x512 and each tile was cropped as 16x16
-
-```shell
-convert -crop 16x16 img/nodejs.png img/tile-%d.png
-```
+> [!NOTE]  
+> The original image [nodejs.png](img/nodejs.png) has 512x512 and each tile was cropped as 16x16
 
 
 ## References

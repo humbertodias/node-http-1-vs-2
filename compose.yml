@@ -1,35 +1,27 @@
 version: '3.9'
 
 services:
-  node1:
-    image: node
-    command: "node http-1.js"
-    working_dir: /app
-    volumes:
-      - .:/app
+
+  http1:
+    build: .
+    command: node http-1.js
     ports:
       - "3001:3001"
     networks:
       - node_network
 
-  node2:
-    image: node
-    command: "node http-2.js"
-    working_dir: /app
-    volumes:
-      - .:/app
+  http2:
+    build: .
+    command: node http-2.js
     ports:
       - "3002:3002"
       - "8443:443"
     networks:
       - node_network
 
-  compare:
-    image: node
-    command: "node http-compare.js"
-    working_dir: /app
-    volumes:
-      - .:/app
+  gateway:
+    build: .
+    command: node http-compare.js
     ports:
       - "3003:3003"
     networks:
