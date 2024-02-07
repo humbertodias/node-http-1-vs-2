@@ -9,10 +9,12 @@
     "cert:crt": "openssl x509 -req -sha256 -days 365 -in server.csr -signkey server.key -out server.crt",
     "img:crop": "convert -crop 16x16 img/nodejs.png img/tile-%d.png"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "spdy": "^4.0.2"
-  }
+    "spdy": "^4.0.2",
+    "h3": "^1.10.1"
+    }
 }

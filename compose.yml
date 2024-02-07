@@ -19,11 +19,19 @@ services:
     networks:
       - node_network
 
+  http3:
+    build: .
+    command: node http-3.js
+    ports:
+      - "3003:3003"
+    networks:
+      - node_network
+
   gateway:
     build: .
     command: node http-compare.js
     ports:
-      - "3003:3003"
+      - "3000:3000"
     networks:
       - node_network
 

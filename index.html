@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>http 1 vs 2</title>
+    <title>http 1 vs 2 vs 3</title>
     <style type="text/css">
         .image-row {
             font-size: 0;
@@ -31,9 +31,11 @@
             tileWidth = 16;
         var loadedH1 = 0,
             loadedH2 = 0,
+            loadedH3 = 0,
             maxTiles = imageWidth * 2;
         var timeH1 = 0,
-            timeH2 = 0;
+            timeH2 = 0,
+            timeH3 = 0;
 
         function compare() {
             document.querySelectorAll("#image-http-1 .demo-image").forEach(function(item, index) {
@@ -48,6 +50,14 @@
                 loadedH2 = 0;
                 timeH2 = 0;
                 reloadImage2(item)
+            });
+        }
+
+        function reloadAllImage3(){
+            document.querySelectorAll("#image-http-3 .demo-image").forEach(function(item, index) {
+                loadedH3 = 0;
+                timeH3 = 0;
+                reloadImage3(item)
             });
         }
 
@@ -109,14 +119,48 @@
             }
         }
 
+        function reloadImage3(elm, typeImage) {
+            var oldSrc = elm.getAttribute("src");
+            var idxParam = oldSrc.indexOf("?");
+            if (idxParam != -1) oldSrc = oldSrc.substring(0, idxParam)
+            var t = performance.now();
+            elm.setAttribute("alt", t);
+            elm.setAttribute("src", "");
+            elm.setAttribute("src", oldSrc + "?t=" + t);
+            elm.onload = function(evt) {
+                var el = evt.target;
+                var t0 = parseFloat(el.alt);
+                var t1 = performance.now();
+                var tf = t1 - t0;
+                var tfsec = tf / 1000;
+                el.setAttribute("title", tfsec + " sec");
+
+                loadedH3++;
+                timeH3 += tf;
+
+                if (loadedH3 >= maxTiles) {
+                	finishLoading3()
+                }
+
+            }
+        }
+
+
         function finishLoading2(){
-        	document.getElementById("info3").innerHTML = timeH2.toFixed(2) + " sec";
+        	document.getElementById("info2").innerHTML = timeH2.toFixed(2) + " sec";
+            reloadAllImage3()
+        }
+
+        function finishLoading3(){
+        	document.getElementById("info3").innerHTML = timeH3.toFixed(2) + " sec";
             updateFactor()
         }
 
         function updateFactor() {
-            if (loadedH1 >= maxTiles && loadedH2 >= maxTiles) {
-                document.getElementById("info2").innerHTML = (timeH1 / timeH2).toFixed(2) + "x";
+            if (loadedH1 >= maxTiles && loadedH2 >= maxTiles && loadedH3 >= maxTiles) {
+                h1vsh2 = (timeH1 / timeH2).toFixed(2) + "x"
+                h2vsh3 = (timeH2 / timeH3).toFixed(2) + "x"
+                document.getElementById("infoX").innerHTML = `1x2: ${h1vsh2} - 2x3: ${h2vsh3}` ;
             }
         }
 
@@ -158,6 +202,7 @@
         function createImages() {
             createImage('image-http-1', 'http://localhost:3001', imageWidth, tileWidth);
             createImage('image-http-2', 'https://localhost:3002', imageWidth, tileWidth);
+            createImage('image-http-3', 'http://localhost:3003', imageWidth, tileWidth);
         }
 
         window.onload = createImages
@@ -170,24 +215,26 @@
     <table>
         <tr>
             <tr>
-
                 <td>
                     <h1>HTTP 1.1</h1>
                 </td>
-                <td><button onclick="compare()">Compare</button></td>
                 <td>
                     <h1>HTTP 2</h1>
                 </td>
-
+                <td>
+                    <h1>HTTP 3</h1>
+                </td>
             </tr>
 
             <tr>
                 <td>
                     <div id="image-http-1"></div>
                 </td>
-                <td>&nbsp;</td>
                 <td>
                     <div id="image-http-2"></div>
+                </td>
+                <td>
+                    <div id="image-http-3"></div>
                 </td>
 
             </tr>
@@ -200,6 +247,16 @@
                 </td>
                 <td>
                     <h3 id="info3">&nbsp;</h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h3 id="infoX">&nbsp;</h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button onclick="compare()">Compare</button>
                 </td>
             </tr>
 
