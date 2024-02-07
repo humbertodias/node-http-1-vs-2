@@ -15,6 +15,7 @@ Clone
 ```shell
 git clone https://github.com/humbertodias/node-http-1-vs-2.git 
 cd node-http-1-vs-2
+npm install
 ```
 
 Run

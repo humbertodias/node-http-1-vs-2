@@ -1,4 +1,4 @@
-const port = 3002;
+const port = process.env.PORT || 3002;
 import spdy from "spdy";
 import express from "express";
 import fs from "fs";
